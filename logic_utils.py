@@ -1,6 +1,28 @@
+import random
+from collections.abc import MutableMapping
+from typing import Any
+
+
 def get_range_for_difficulty(difficulty: str):
     """Return (low, high) inclusive range for a given difficulty."""
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    if difficulty == "Easy":
+        return 1, 20
+    if difficulty == "Normal":
+        return 1, 50
+    if difficulty == "Hard":
+        return 1, 100
+    return 1, 100
+
+
+def start_new_game(
+    session_state: MutableMapping[str, Any],
+    low: int,
+    high: int,
+) -> None:
+    session_state["secret"] = random.randint(low, high)
+    session_state["attempts"] = 0
+    session_state["status"] = "playing"
+    session_state["history"] = []
 
 
 def parse_guess(raw: str):
