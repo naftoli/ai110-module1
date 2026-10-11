@@ -22,7 +22,9 @@ def test_guess_too_low():
 def test_parse_guess():
     assert parse_guess("42") == (True, 42, None)
     assert parse_guess("") == (False, None, "Enter a guess.")
-    assert parse_guess("not a number") == (False, None, "That is not a number.")
+    assert parse_guess(" 42 ") == (True, 42, None)
+    assert parse_guess("42.9") == (False, None, "Enter a whole number.")
+    assert parse_guess("not a number") == (False, None, "Enter a whole number.")
 
 
 def test_update_score():

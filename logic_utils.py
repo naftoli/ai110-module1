@@ -27,20 +27,17 @@ def start_new_game(
 
 def parse_guess(raw: str):
     """
-    Parse user input into an int guess.
+    Parse user input into a whole-number guess.
 
     Returns: (ok: bool, guess_int: int | None, error_message: str | None)
     """
-    if raw is None or raw == "":
+    if raw is None or raw.strip() == "":
         return False, None, "Enter a guess."
 
     try:
-        if "." in raw:
-            value = int(float(raw))
-        else:
-            value = int(raw)
-    except (ValueError, OverflowError):
-        return False, None, "That is not a number."
+        value = int(raw.strip())
+    except ValueError:
+        return False, None, "Enter a whole number."
 
     return True, value, None
 
